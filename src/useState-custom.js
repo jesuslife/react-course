@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 
 /*
 Reglas de los hooks
@@ -22,19 +22,6 @@ const App = () => {
     [1] : function que perimite actualizar el valor de la variable
     */ 
     const [contador, incrementar] = useContador(0)
-    
-    /*
-    Use efect recibe 2 argumentos
-        1. funcion con la logica que va a ejecutar
-        2. dependencias que necesita para funcionar
-    
-        useEffect(() => {}, [])
-    */
-    
-    useEffect(() =>{
-        document.title = contador
-    },[contador])
-
     return (
         <div>
             Contador: {contador}
