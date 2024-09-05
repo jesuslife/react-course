@@ -16,6 +16,19 @@ const useContador = (inicial) => {
 
     return [contador, incrementar]
 }
+
+const Interval = ({contador}) => {
+    useEffect(() => {
+        const i = setInterval(() => console.log(contador), 1000)
+        // desincribir sirver cuando usa conexiones a tablas o web sockets
+        return () => clearInterval(i)
+    }, [contador])
+    return(
+        <p>Intervalo</p>
+    )
+}
+
+
 const App = () => {
     /* useState retorna un arreglo
     [0] : valor initial de useState
@@ -39,6 +52,7 @@ const App = () => {
         <div>
             Contador: {contador}
             <button onClick={incrementar}>Incrementar</button>
+            <Interval contador = {contador}/>
 
         </div>
     )
