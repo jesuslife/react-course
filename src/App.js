@@ -1,37 +1,35 @@
-/* un componente fucional lo podemo definir como
- una constante a la cual le asignamos una fat arrow function
- o tambine puede ser una fucion
-*/
+import {useState} from 'react'
 
 /*
-function App(){
-
-}
-
-const App = () => {
-  
-}
+Reglas de los hooks
+    1. No se llaman en loops, ni condiciones, ni while 
+    2. solo se llaman en 2 partes:
+        - Componentes de react(functional components)
+        - custom hooks
+    3. Cuando creemos un custom hook, tiene que comenzar con use*
 */
+const useContador = (inicial) => {
+    const [contador, setContador] = useState(inicial)
+    const incrementar = () => {
+        setContador(contador + 1)
+    }
 
-// function impura: siempre regresa un valor distinto
-const impura = () => new Date().toLocaleString()
-console.log(impura())
-
-
-// en react todos los componentes son puros (siempre retornan lo mismo)
-const Micomponente = ({miProp}) => {
+    return [contador, incrementar]
+}
+const App = () => {
+    /* useState retorna un arreglo
+    [0] : valor initial de useState
+    [1] : function que perimite actualizar el valor de la variable
+    */ 
+    const [contador, incrementar] = useContador(0)
     return (
-      <div>
-        Nombre: {miProp}
-      </div>
+        <div>
+            Contador: {contador}
+            <button onClick={incrementar}>Incrementar</button>
+
+        </div>
     )
 }
 
-const App = () => {
-  return (
-    <Micomponente miProp={'gerardo'}/>
-  )
-}
 
-
-export default App;
+export default App
