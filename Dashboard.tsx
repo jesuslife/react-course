@@ -51,7 +51,7 @@ export default function Component() {
     setOpenMenus(prev =>
       prev.includes(title) ? prev.filter(item => item !== title) : [...prev, title]
     )
-  } 
+  }
 
   const handleSubItemClick = (subItem: string) => {
     setSelectedOption(subItem)
