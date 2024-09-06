@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
-import { Menu, ChevronDown, ChevronUp, Circle, Locate,Egg,Syringe,Snowflake,Database} from 'lucide-react'
+import { Menu, ChevronDown, ChevronUp, Circle, Locate,Egg,Syringe,Snowflake,Database,ChevronLeftIcon, ChevronRightIcon} from 'lucide-react'
 // import { Line, BarChart, Bar, XAxis, YAxis, Tooltip,  } from 'recharts'
 const menuItems = [
     {
@@ -52,8 +52,14 @@ const lineData = [
     { name: 'Apr', value: 800 },
     { name: 'May', value: 500 },
     { name: 'Jun', value: 700 },
-  ]
+]
 
+const metrics = [
+    { title: 'Total Users', value: '10,234', color: 'bg-gray-800' },
+    { title: 'Revenue', value: '$52,389', color: 'bg-[#ed7522]' },
+    { title: 'Conversion Rate', value: '3.2%', color: 'bg-gray-600' },
+    { title: 'Avg. Session', value: '4m 32s', color: 'bg-[#009382]' },
+]
 
 const App = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true)
@@ -70,7 +76,7 @@ const App = () => {
     }
 
     return (
-        <div className="flex h-screen bg-gradient-to-br from-white to-[#f0f0f0] text-gray-800">
+    <div className="flex h-screen bg-gradient-to-br from-white to-[#f0f0f0] text-gray-800">
       {/* Sidebar */}
       <aside
         className={`${
@@ -79,7 +85,7 @@ const App = () => {
       >
         <div className="flex h-full flex-col">
           <div className="flex items-center justify-center h-16 bg-gradient-to-r from-[#ed7522] to-[#fed600]">
-            <h2 className="text-2xl font-bold text-white">Dashboard</h2>
+            <h2 className="text-2xl font-bold text-white">AURA</h2>
           </div>
           <nav className="flex-1 space-y-1 p-4">
             {menuItems.map((item) => (
@@ -124,8 +130,9 @@ const App = () => {
         <header className="flex items-center justify-between p-4 bg-white shadow-md">
           <button
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className="p-2 rounded-md lg:hidden hover:bg-gray-100"
+            className="p-2 rounded-md  hover:bg-gray-100"
           >
+            {/* {isSidebarOpen ? <ChevronLeftIcon className="h-4 w-4" /> : <ChevronRightIcon className="h-4 w-4" />} */}
             <Menu className="h-6 w-6" />
           </button>
           <h1 className="text-2xl font-semibold text-gray-800">Futuristic Dashboard</h1>
@@ -171,12 +178,7 @@ const App = () => {
               Key Metrics for {selectedOption}
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {[
-                { title: 'Total Users', value: '10,234', color: 'bg-gray-800' },
-                { title: 'Revenue', value: '$52,389', color: 'bg-[#ed7522]' },
-                { title: 'Conversion Rate', value: '3.2%', color: 'bg-gray-600' },
-                { title: 'Avg. Session', value: '4m 32s', color: 'bg-[#009382]' },
-              ].map((metric) => (
+              {metrics.map((metric) => (
                 <div key={metric.title} className={`${metric.color} p-4 rounded-lg text-white`}>
                   <h4 className="text-lg font-medium mb-2">{metric.title}</h4>
                   <p className="text-3xl font-bold">{metric.value}</p>
