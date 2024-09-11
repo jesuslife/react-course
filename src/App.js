@@ -1,21 +1,28 @@
+import { useRef } from "react";
+
 function App() {
-  const submit = (e) => {
-    e.preventDefault();
-    const data = Array.from(new FormData(e.target));
-    console.log(Object.fromEntries(data));
+  const input = useRef();
+  const file = useRef();
+
+  const submit = () => {
+    console.log(input.current.value);
+    console.log(file.current.files[0]);
+
+    const form = new FormData();
+    form.append("archivo", file.current.files[0]);
+    form.append("campo", input.current.value);
+    fetch("/lala", { method: "POST", body: form });
   };
 
   return (
-    <form onSubmit={submit}>
-      {/* <form action="/lala" method="POST"> */}
+    <div>
       <div>
         <span>lala</span>
-        <input name="campo" />
+        <input type="text" name="campo" ref={input} />
+        <input type="file" ref={file} />
       </div>
-      <input name="campo2" />
-      {/* submit  es como colocar un boton pero asociado con un input*/}
-      <input type="submit" value="Enviar" />
-    </form>
+      <input type="submit" value="Enviar" onClick={submit} />
+    </div>
   );
 }
 
