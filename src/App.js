@@ -1,36 +1,25 @@
-import { useReducer, useState } from "react";
-
-// const state = {contador:0}
-// action = {type: string, payload:any}   payload puede tener cualquier cosa
-const inicial = { contador: 0 };
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "incrementar":
-      return { contador: state.contador + 1 };
-    case "decrementar":
-      return { contador: state.contador - 1 };
-    case "set":
-      return { contador: action.payload };
-    default:
-      return state;
-  }
-};
+import { useRef } from "react";
 
 const App = () => {
-  // dispatch permite despachar eventos los cuales tienen que tener la forma de action {type: string, payload:any}
-  const [state, dispatch] = useReducer(reducer, inicial);
-  const [valor, setValor] = useState(0);
+  // se asigna a un elemento JSX, vamos a poder acceder a ese elemento
+  const ref = useRef();
+  const inputRef = useRef();
+
+  const click = () => {
+    console.log(ref.current.clientHeight);
+  };
+
+  const focus = () => {
+    inputRef.current.focus();
+  };
 
   return (
     <div>
-      Contador: {state.contador}
-      <input value={valor} onChange={(e) => setValor(e.target.value)}></input>
-      <button onClick={() => dispatch({ type: "incrementar" })}>mas </button>
-      <button onClick={() => dispatch({ type: "decrementar" })}>menos </button>
-      <button onClick={() => dispatch({ type: "set", payload: valor })}>
-        set
-      </button>
+      <input ref={inputRef} />
+      <button onClick={focus}>Focus</button>
+      <div onClick={click} ref={ref}>
+        Lala
+      </div>
     </div>
   );
 };
