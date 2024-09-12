@@ -6,6 +6,7 @@ const App = () => {
     texto: "",
     select: "",
     check: false,
+    estado: "feliz",
   });
 
   const handleChange = (e) => {
@@ -42,6 +43,33 @@ const App = () => {
         onChange={handleChange}
         checked={value.check}
       />
+      <div>
+        <label>Chancho</label>
+        <input
+          onChange={handleChange}
+          type="radio"
+          value="feliz"
+          name="estado"
+          checked={value.estado === "feliz"}
+        />
+        Feliz
+        <input
+          onChange={handleChange}
+          type="radio"
+          value="triste"
+          name="estado"
+          checked={value.estado === "triste"}
+        />
+        Triste
+        <input
+          onChange={handleChange}
+          type="radio"
+          value="felipe"
+          name="estado"
+          checked={value.estado === "felipe"}
+        />
+        Felipe
+      </div>
     </div>
   );
 };
