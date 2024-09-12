@@ -1,14 +1,21 @@
 import { useState } from "react";
 
 const App = () => {
-  const [value, setValue] = useState({ normal: "", texto: "", select: "" });
+  const [value, setValue] = useState({
+    normal: "",
+    texto: "",
+    select: "",
+    check: false,
+  });
 
   const handleChange = (e) => {
     // console.log(e.target.name);
     // console.log(e.target.value);
+    // console.log(e.target.type, e.target.checked, e.target.value);
     setValue({
       ...value,
-      [e.target.name]: e.target.value,
+      [e.target.name]:
+        e.target.type === "checkbox" ? e.target.checked : e.target.value,
     });
   };
 
@@ -29,6 +36,12 @@ const App = () => {
         <option value="chanchitofeliz">chancito feliz</option>
         <option value="chanchotriste">chancho triste</option>
       </select>
+      <input
+        type="checkbox"
+        name="check"
+        onChange={handleChange}
+        checked={value.check}
+      />
     </div>
   );
 };
